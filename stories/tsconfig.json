@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["**/*"],
+  "compilerOptions": {
+    "baseUrl": "../",
+    "paths": {
+      "emiya-components": ["./src/"],
+      "emiya-components/*": ["./src/*"]
+    }
+  },
+  "exclude": ["./dist"]
+}

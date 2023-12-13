@@ -5,6 +5,8 @@
   "main": "./dist/lib/index.js",
   "module": "./dist/es/index.js",
   "scripts": {
+    "build-storybook": "storybook build",
+    "storybook": "storybook dev -p 6006",
     "prepare": "modern build && husky install",
     "dev": "modern dev",
     "build": "modern build",
@@ -20,30 +22,54 @@
     "new": "modern new",
     "upgrade": "modern upgrade"
   },
+  "dependencies": {
+    "antd": "^5.9.0",
+    "clsx": "^2.0.0",
+    "dayjs": "^1.11.10",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "~3.3.3"
+  },
+  "devDependencies": {
+    "@modern-js/builder-rspack-provider": "^2.42.1",
+    "@modern-js/builder-webpack-provider": "2.42.1",
+    "@modern-js/eslint-config": "2.42.1",
+    "@modern-js/module-tools": "2.42.1",
+    "@modern-js/plugin-tailwindcss": "2.42.1",
+    "@modern-js/storybook": "2.42.1",
+    "@modern-js/tsconfig": "^2.42.1",
+    "@storybook/addon-essentials": "7.6.4",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addon-styling-webpack": "^0.0.5",
+    "@storybook/react": "^7.6.4",
+    "@storybook/types": "^7.6.4",
+    "@types/node": "~16.11.7",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "husky": "~8.0.1",
+    "lint-staged": "~13.1.0",
+    "prettier": "~2.8.1",
+    "rimraf": "~3.0.2",
+    "tailwindcss": "~3.3.3",
+    "typescript": "~5.0.4"
+  },
+  "publishConfig": {
+    "types": "./dist/types/index.d.ts",
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
       "node --max_old_space_size=8192 ./node_modules/eslint/bin/eslint.js --fix --color --cache --quiet"
     ]
   },
-  "eslintIgnore": [
-    "node_modules/",
-    "dist/"
-  ],
-  "dependencies": {},
-  "peerDependencies": {},
-  "devDependencies": {
-    "@modern-js/module-tools": "2.42.1",
-    "@modern-js/eslint-config": "2.42.1",
-    "typescript": "~5.0.4",
-    "@types/node": "~16.11.7",
-    "rimraf": "~3.0.2",
-    "lint-staged": "~13.1.0",
-    "prettier": "~2.8.1",
-    "husky": "~8.0.1"
-  },
-  "sideEffects": [],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  }
+  "sideEffects": []
 }
