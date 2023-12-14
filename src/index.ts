@@ -8,3 +8,5 @@ export { default as TestDemo } from './test-demo';
 
 export * from './select';
 export { default as Select } from './select';
+export * from './modal';
+export { default as Modal } from './modal';

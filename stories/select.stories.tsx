@@ -19,6 +19,7 @@ const storyMeta: Meta<typeof Select> = {
     allowClear: { control: 'boolean' },
     block: { control: 'boolean' },
     placeholder: { control: 'text' },
+    size: { control: 'select', options: ['small', 'middle', 'large'] },
   },
 };
 export default storyMeta;
