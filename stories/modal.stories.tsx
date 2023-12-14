@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { CloseOutlined } from '@ant-design/icons';
+import { Modal as AntdModal } from 'antd';
 import { Modal } from '../src';
 
 const storyMeta: Meta<typeof Modal> = {
@@ -15,7 +17,7 @@ const storyMeta: Meta<typeof Modal> = {
     cancelText: { control: 'text' },
     centered: { control: 'boolean' },
     // closeIcon 类型是 boolean | ReactNode
-    closeIcon: { control: 'boolean' },
+    closeIcon: { control: 'object' },
     confirmLoading: { control: 'boolean' },
     focusTriggerAfterClose: { control: 'boolean' },
     forceRender: { control: 'boolean' },
@@ -37,7 +39,7 @@ const storyMeta: Meta<typeof Modal> = {
     centered: true,
     keyboard: true,
     zIndex: 1000,
-    closeIcon: true,
+    closeIcon: <CloseOutlined />,
   },
 };
 
@@ -46,3 +48,10 @@ export default storyMeta;
 type Story = StoryObj<typeof Modal>;
 
 export const Default: Story = {};
+
+export const WithCloseIcon: Story = {
+  render: props => <Modal {...props}>WithCloseIcon</Modal>,
+};
+export const AntdWithCloseIcon: Story = {
+  render: props => <AntdModal {...props}>WithCloseIcon</AntdModal>,
+};

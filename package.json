@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.18.1",
+    "@ant-design/icons": "^5.2.6",
     "antd": "^5.9.0",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",

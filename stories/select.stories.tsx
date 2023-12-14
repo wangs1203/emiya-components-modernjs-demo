@@ -1,12 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ConfigProvider } from 'antd';
-import zhCN from 'antd/locale/zh_CN';
+import { Space } from 'antd';
 import { Select } from '../src';
-
-const antdLocaleMap = {
-  'zh-CN': zhCN,
-  // 'en-US' enUS
-};
 
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
@@ -30,7 +24,7 @@ export const Default: Story = {};
 
 export const Base: Story = {
   render: () => (
-    <ConfigProvider locale={antdLocaleMap['zh-CN']}>
+    <Space>
       <Select placeholder="请选择" />
       <Select
         defaultValue="lucy"
@@ -61,7 +55,7 @@ export const Base: Story = {
         allowClear
         options={[{ id: 'lucy', name: 'Lucy' }]}
       />
-    </ConfigProvider>
+    </Space>
   ),
 };
 
