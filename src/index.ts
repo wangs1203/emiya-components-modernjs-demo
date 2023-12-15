@@ -10,3 +10,5 @@ export * from './select';
 export { default as Select } from './select';
 export * from './modal';
 export { default as Modal } from './modal';
+export * from './container';
+export { default as Container } from './container';

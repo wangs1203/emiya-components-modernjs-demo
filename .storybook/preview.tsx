@@ -8,6 +8,7 @@ import ja_JP from 'antd/locale/ja_JP';
 import ko_KR from 'antd/locale/ko_KR';
 import en_US from 'antd/locale/en_US';
 import '../src/index.css';
+import './index.css';
 
 const switchMode = (theme: 'light' | 'dark') => {
   const body = document.body;

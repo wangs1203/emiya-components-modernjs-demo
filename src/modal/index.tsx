@@ -28,7 +28,6 @@ export default memo(function Modal({
     bottom: 0,
     right: 0,
   });
-  console.log(closeIcon);
 
   const titleMemozied = useMemo(
     () =>

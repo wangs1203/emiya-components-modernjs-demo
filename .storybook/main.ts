@@ -1,10 +1,45 @@
 // import path from 'path';
 import type { StorybookConfig } from '@modern-js/storybook';
 
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
+
+function getLoaderForStyle(isCssModule?: boolean) {
+  return [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: isCssModule
+        ? {
+            importLoaders: 1,
+            modules: {
+              auto: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
+          }
+        : {},
+    },
+    {
+      // Gets options from `postcss.config.js` in your project root
+      loader: 'postcss-loader',
+      options: { implementation: require.resolve('postcss') },
+    },
+    {
+      loader: 'less-loader',
+      options: {
+        lessOptions: {
+          javascriptEnabled: true,
+        },
+      },
+    },
+  ];
+}
+
 const config: StorybookConfig = {
   stories: ['../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-essentials',
+    'storybook-dark-mode',
     {
       name: '@storybook/addon-styling-webpack',
       options: {
@@ -12,30 +47,38 @@ const config: StorybookConfig = {
           {
             test: /\.css$/,
             sideEffects: true,
-            // use: [
-            //   require.resolve('style-loader'),
-            //   {
-            //     loader: require.resolve('css-loader'),
-            //     options: {},
-            //   },
-            // ],
             use: [
               'style-loader',
               {
                 loader: 'css-loader',
-                options: { importLoaders: 1 }
+                options: {
+                  importLoaders: 1,
+                  modules: {
+                    auto: true,
+                    localIdentName: '[name]__[local]--[hash:base64:5]',
+                  },
+                },
               },
               {
                 // Gets options from `postcss.config.js` in your project root
                 loader: 'postcss-loader',
-                options: { implementation: require.resolve('postcss') }
-              }
+                options: { implementation: require.resolve('postcss') },
+              },
             ],
+          },
+          // Replaces any existing Sass rules with given rules
+          {
+            test: lessRegex,
+            exclude: lessModuleRegex,
+            use: getLoaderForStyle(),
+          },
+          {
+            test: lessModuleRegex,
+            use: getLoaderForStyle(true),
           },
         ],
       },
     },
-    'storybook-dark-mode'
   ],
   framework: {
     name: '@modern-js/storybook',
