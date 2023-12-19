@@ -4,7 +4,8 @@ const ERROR = 2;
 module.exports = {
   root: true,
   extends: ['@modern-js', 'plugin:react/recommended'],
-  plugins: ['react', 'react-hooks'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   rules: {
     curly: OFF,
     'react/react-in-jsx-scope': OFF,
@@ -19,5 +20,30 @@ module.exports = {
       { ignore: ['colspan', 'css', 'data-*', 'tw'] },
     ],
     'react/jsx-key': WARNING,
+    '@typescript-eslint/naming-convention': [
+      ERROR,
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+        custom: {
+          regex: '^I[A-Z]',
+          match: true,
+        },
+        filter: {
+          // you can expand this regex to add more allowed names
+          regex: '^Window',
+          match: false,
+        },
+      },
+      // {
+      //   selector: 'variable',
+      //   modifiers: ['const'],
+      //   format: ['UPPER_CASE'],
+      // },
+      {
+        selector: 'enum',
+        format: ['UPPER_CASE'],
+      },
+    ],
   },
 };

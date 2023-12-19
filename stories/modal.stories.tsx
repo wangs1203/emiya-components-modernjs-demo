@@ -3,7 +3,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import { Modal } from '../src';
 
 const storyMeta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'antd/Modal',
   component: Modal,
   argTypes: {
     open: { control: 'boolean' },

@@ -5,7 +5,7 @@ const Example = ({ backgroundColor, color }: any) => (
 );
 
 export default {
-  title: 'Components/Example',
+  title: 'Emiya Components/Example',
   component: Example,
   argTypes: {
     backgroundColor: { control: 'color' },

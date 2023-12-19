@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from '../src';
 
 const storyMeta: Meta<typeof Container> = {
-  title: 'Components/Container',
+  title: 'Emiya Components/Container',
   component: Container,
   argTypes: {
     children: { control: 'object' },

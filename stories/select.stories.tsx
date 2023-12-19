@@ -7,7 +7,7 @@ const handleChange = (value: string) => {
 };
 
 const storyMeta: Meta<typeof Select> = {
-  title: 'Components/Select',
+  title: 'antd/Select',
   component: Select,
   argTypes: {
     allowClear: { control: 'boolean' },

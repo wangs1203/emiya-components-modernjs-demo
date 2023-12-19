@@ -1,0 +1,18 @@
+.time-axis-tooltip-item {
+  &:not(:last-child) {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #44b2a5;
+  }
+  & > div {
+    &:nth-child(odd) {
+      margin-right: 3%;
+    }
+    width: 48%;
+    display: flex;
+    span:first-child {
+      flex-shrink: 0;
+      width: 76px;
+    }
+  }
+}

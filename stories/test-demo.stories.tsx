@@ -5,7 +5,7 @@ import { TestDemo } from '../src';
 // console.log(Emiya);
 
 const storyMeta: Meta<typeof TestDemo> = {
-  title: 'Components/TestDemo',
+  title: 'Emiya Components/TestDemo',
   component: TestDemo,
 };
 export default storyMeta;
