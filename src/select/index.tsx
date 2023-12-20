@@ -14,7 +14,7 @@ export type DefaultSelectOptionType = {
   children?: Omit<DefaultSelectOptionType, 'children'>[];
 };
 
-export interface SelectProps<
+export interface ISelectProps<
   ValueType,
   OptionType extends
     | BaseOptionType
@@ -35,14 +35,13 @@ function InternalSelect<
     placeholder = '请选择',
     className,
     block = false,
-    // notFoundContent = '暂无数据',
     size = 'middle',
     optionFilterProp = 'children',
     ...props
-  }: SelectProps<ValueType, OptionType>,
+  }: ISelectProps<ValueType, OptionType>,
   ref: Ref<RefSelectProps>,
 ) {
-  const classNames = block ? clsx('w-full', className) : className;
+  const classNames = block ? clsx('tw-w-full', className) : className;
   return (
     <AntdSelect
       {...props}
@@ -50,7 +49,6 @@ function InternalSelect<
       className={classNames}
       allowClear={allowClear}
       placeholder={placeholder}
-      // notFoundContent={notFoundContent}
       size={size}
       optionFilterProp={optionFilterProp}
       fieldNames={fieldNames}
@@ -65,7 +63,7 @@ const Select = memo(forwardRef(InternalSelect)) as unknown as (<
     | AntdDefaultOptionType = DefaultSelectOptionType,
 >(
   props: PropsWithChildren<
-    SelectProps<ValueType, OptionType> & { ref?: Ref<RefSelectProps> }
+    ISelectProps<ValueType, OptionType> & { ref?: Ref<RefSelectProps> }
   >,
 ) => ReactElement) & {
   Option: typeof AntdSelect.Option;

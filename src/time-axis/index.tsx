@@ -498,7 +498,7 @@ function TimeAxis({
 
   return (
     <div
-      className="w-full h-full cursor-pointer flex flex-col relative"
+      className="tw-w-full tw-h-full tw-cursor-pointer tw-flex tw-flex-col tw-relative"
       style={{
         backgroundColor,
         height,
@@ -508,11 +508,11 @@ function TimeAxis({
       onMouseOut={handleMouseout}
       onMouseLeave={handleMouseleave}
     >
-      <canvas className="flex-grow-0 flex-shrink-0" ref={canvasRef} />
+      <canvas className="tw-flex-grow-0 tw-flex-shrink-0" ref={canvasRef} />
       {/* tooltip */}
       <div
         ref={tooltipRef}
-        className="absolute left-0 top-0 bg-white rounded p-3"
+        className="tw-absolute tw-left-0 tw-top-0 tw-bg-white tw-rounded tw-p-3"
         style={{
           display: hoveredTimeSegment?.level ? 'block' : 'none',
           visibility: mousemoveX !== -1 ? 'visible' : 'hidden',
@@ -529,7 +529,7 @@ function TimeAxis({
             <div
               key={JSON.stringify(item)}
               className={clsx([
-                'flex flex-wrap',
+                'tw-flex tw-flex-wrap',
                 styles['time-axis-tooltip-item'],
               ])}
             >

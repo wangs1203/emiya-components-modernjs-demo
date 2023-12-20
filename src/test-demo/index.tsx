@@ -10,11 +10,13 @@ const TestDemo = () => {
   }, []);
 
   return (
-    <div className="h-12 w-48">
-      <p className="text-xl font-medium text-black">Test Demo</p>
-      <p className="text-xl">{a}</p>
-      <p className="text-xl">{id}</p>
-      <p className="text-xl font-medium text-black p-0 m-0">{data.join()}</p>
+    <div className="tw-h-12 tw-w-48">
+      <p className="tw-text-xl tw-font-medium tw-text-black">Test Demo</p>
+      <p className="tw-text-xl">{a}</p>
+      <p className="tw-text-xl">{id}</p>
+      <p className="tw-text-xl tw-font-medium tw-text-black tw-p-0 tw-m-0">
+        {data.join()}
+      </p>
     </div>
   );
 };

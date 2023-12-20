@@ -28,23 +28,23 @@ export default function BaseLoader({
     <div
       {...props}
       className={clsx([
-        'gap-2',
-        vertical ? 'inline-flex' : 'flex',
+        'tw-gap-2',
+        vertical ? 'tw-inline-flex' : 'tw-flex',
         {
-          'justify-center items-center w-full h-full': center,
+          'tw-justify-center tw-items-center tw-w-full tw-h-full': center,
         },
-        { 'flex-col': vertical },
+        { 'tw-flex-col': vertical },
       ])}
     >
       <Spin {...spinProps} size={size} />
       <div
         style={{ color: token.colorPrimaryText }}
         className={clsx([
-          'flex items-center',
+          'tw-flex tw-items-center',
           {
-            'text-xs': size === 'small',
-            'text-sm': size === 'default',
-            'text-base': size === 'large',
+            'tw-text-xs': size === 'small',
+            'tw-text-sm': size === 'default',
+            'tw-text-base': size === 'large',
           },
         ])}
       >

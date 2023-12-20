@@ -6,7 +6,7 @@ import { Modal as AntdModal } from 'antd';
 import Draggable from 'react-draggable';
 import { useEvent } from '@/hooks';
 
-export interface ModalProps extends AntdModalProps {
+export interface IModalProps extends AntdModalProps {
   draggable?: boolean;
 }
 
@@ -19,7 +19,7 @@ export default memo(function Modal({
   title,
   modalRender,
   ...props
-}: ModalProps) {
+}: IModalProps) {
   const [dragDisabled, setDragDisabled] = useState(true);
   const draggleRef = useRef<HTMLDivElement>(null);
   const [bounds, setBounds] = useState({
@@ -33,7 +33,7 @@ export default memo(function Modal({
     () =>
       draggable ? (
         <div
-          className="w-full cursor-move draggable-handle"
+          className="tw-w-full tw-cursor-move tw-draggable-handle"
           onMouseOver={() => {
             dragDisabled && setDragDisabled(false);
           }}
