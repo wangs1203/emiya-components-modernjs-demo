@@ -35,11 +35,6 @@ module.exports = {
           match: false,
         },
       },
-      // {
-      //   selector: 'variable',
-      //   modifiers: ['const'],
-      //   format: ['UPPER_CASE'],
-      // },
       {
         selector: 'enum',
         format: ['UPPER_CASE'],

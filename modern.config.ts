@@ -10,13 +10,13 @@ export default defineConfig({
   // },
 
   buildConfig: {
-    transformImport: [
-      // babel-plugin-import 的 options 配置
-      {
-        libraryName: 'antd',
-        style: true,
-      },
-    ],
+    // transformImport: [
+    //   // babel-plugin-import 的 options 配置
+    //   {
+    //     libraryName: 'antd',
+    //     style: true,
+    //   },
+    // ],
     transformLodash: true,
   },
 });

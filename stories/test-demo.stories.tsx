@@ -1,8 +1,5 @@
-// import Emiya from 'emiya-components';
 import { Meta, StoryObj } from '@storybook/react';
-import { TestDemo } from '../src';
-
-// console.log(Emiya);
+import { TestDemo } from 'emiya-components';
 
 const storyMeta: Meta<typeof TestDemo> = {
   title: 'Emiya Components/TestDemo',

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Space } from 'antd';
-import { Select } from '../src';
+import { Select } from 'emiya-components';
 
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);

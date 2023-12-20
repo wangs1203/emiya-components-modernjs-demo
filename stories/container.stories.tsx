@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Container } from '../src';
+import { Container } from 'emiya-components';
 
 const storyMeta: Meta<typeof Container> = {
   title: 'Emiya Components/Container',

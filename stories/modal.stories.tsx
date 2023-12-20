@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CloseOutlined } from '@ant-design/icons';
-import { Modal } from '../src';
+import { Modal } from 'emiya-components';
 
 const storyMeta: Meta<typeof Modal> = {
   title: 'antd/Modal',
@@ -41,7 +41,7 @@ const storyMeta: Meta<typeof Modal> = {
     centered: true,
     keyboard: true,
     zIndex: 1000,
-    closable: true,
+    closable: false,
     closeIcon: <CloseOutlined />,
   },
 };
@@ -53,5 +53,17 @@ type Story = StoryObj<typeof Modal>;
 export const Default: Story = {};
 
 export const WithCloseIcon: Story = {
-  render: props => <Modal {...props}>WithCloseIcon</Modal>,
+  args: {
+    closable: true,
+    children: 'WithCloseIcon',
+    footer: null,
+  },
+};
+
+export const WithDraggable: Story = {
+  args: {
+    closable: true,
+    draggable: true,
+    children: 'WithDraggable',
+  },
 };

@@ -84,6 +84,14 @@ const config: StorybookConfig = {
     name: '@modern-js/storybook',
     options: {
       bundler: 'webpack',
+      // builderConfig: {
+      //   tools: {
+      //     webpack: (config, { env }) => {
+      //       console.log(config);
+      //       return config;
+      //     },
+      //   },
+      // },
       // bundler: 'rspack',
     },
   },
@@ -91,6 +99,10 @@ const config: StorybookConfig = {
   //   reactDocgen: 'react-docgen-typescript' // webpack
   //   reactDocgen: 'react-docgen', //rspack
   // },
+  // webpackFinal: async (config, { configType }) => {
+  //   console.log(config)
+  //   return config;
+  // } as any,
 };
 
 export default config;

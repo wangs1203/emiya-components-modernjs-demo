@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import dayjs from 'dayjs';
-import { TimeAxis, WARNING_LEVEL } from '../src';
+import { TimeAxis, WARNING_LEVEL } from 'emiya-components';
 
 const TIME_AXIS_MOCK = [
   {
