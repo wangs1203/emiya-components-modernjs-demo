@@ -1,7 +1,5 @@
 import './index.css';
 
-export { default as TestDemo } from './test-demo';
-
 export * from './select';
 export { default as Select } from './select';
 
