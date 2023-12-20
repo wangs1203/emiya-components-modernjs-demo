@@ -13,7 +13,9 @@ pnpm run install
 Run and debug the module:
 
 ```bash
-pnpm run dev
+pnpm run build:watch
+
+pnpm run storybook
 ```
 
 Run test cases:
