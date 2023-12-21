@@ -1,0 +1,17 @@
+.base-table-wrapper {
+  :global(.ant-table-wrapper) :global(.ant-table-thead) > tr > th,
+  :global(.ant-table-wrapper) :global(.ant-table-thead) > tr > td {
+    @apply tw-text-white;
+    background-color: var(--primary-color);
+  }
+  :global(.ant-table-wrapper)
+    :global(.ant-table-tbody)
+    > :global(tr.ant-table-row:hover)
+    > td,
+  :global(.ant-table-wrapper)
+    :global(.ant-table-tbody)
+    > tr
+    > :global(td.ant-table-cell-row-hover) {
+    background-color: var(--disable-bg-color);
+  }
+}
