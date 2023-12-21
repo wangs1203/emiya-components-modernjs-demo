@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Preview, StoryContext } from '@storybook/react';
+import React from 'react';
 import { StyleProvider } from '@ant-design/cssinjs';
 import { ConfigProvider, theme } from 'antd';
 import zh_CN from 'antd/locale/zh_CN';
@@ -77,10 +77,6 @@ const withConfigProvider = (StoryFn, context: StoryContext) => {
 
   const locale = getLocale(language);
   const algorithm = themeMap[theme];
-  // console.log(language);
-  // console.log(locale);
-  // console.log(direction);
-  // console.log(theme);
   switchMode(theme);
   let configProps = {
     direction,
