@@ -2,9 +2,10 @@ import type { HTMLAttributes, Ref } from 'react';
 import type { TableProps as AntdTableProps } from 'antd';
 import { forwardRef, memo, useMemo } from 'react';
 import { Table as AntdTable, theme } from 'antd';
-// import { merge } from 'lodash';
+import { merge } from 'lodash';
 import clsx from 'clsx';
 import styles from './base-table.module.less';
+import { useTableWrapperRef } from '@/hooks';
 
 const { useToken } = theme;
 
@@ -40,24 +41,32 @@ function InternalBaseTable<T extends IBaseObject = any>(
   }: ITableProps<T>,
   ref: Ref<HTMLDivElement>,
 ) {
-  // const [wrapperRef, wrapperSize] = useTableWrapperRef<HTMLDivElement>(
-  //   Boolean(pagination),
-  // );
-  // const tableScroll = useMemo(
-  //   () => merge({}, wrapperSize, scroll),
-  //   [scroll, wrapperSize],
-  // );
+  const [wrapperRef, wrapperSize] = useTableWrapperRef<HTMLDivElement>(
+    Boolean(pagination),
+  );
+  const tableScroll = useMemo(
+    () => merge({}, wrapperSize, scroll),
+    [scroll, wrapperSize],
+  );
+
   const { token } = useToken();
+
   const styleMerged = useMemo(() => {
     const internalStyle = {
       flex: 1,
       '--primary-color': token.colorPrimary,
       '--disable-bg-color': token.colorBgContainerDisabled,
+      '--scroll-height': `${tableScroll.y}px`,
     };
     return wrapProps?.style
       ? { ...wrapProps.style, ...internalStyle }
       : internalStyle;
-  }, [wrapProps?.style, token.colorPrimary, token.colorBgContainerDisabled]);
+  }, [
+    wrapProps?.style,
+    token.colorPrimary,
+    token.colorBgContainerDisabled,
+    tableScroll.y,
+  ]);
 
   const internalRowSelection = useMemo(
     () => (rowSelection ? { ...rowSelection, fixed: true } : undefined),
@@ -79,8 +88,12 @@ function InternalBaseTable<T extends IBaseObject = any>(
   return (
     <div
       {...wrapProps}
-      // ref={wrapperRef}
-      className={clsx(['tw-min-h-0', styles['base-table-wrapper']])}
+      ref={wrapperRef}
+      className={clsx([
+        'tw-min-h-0 tw-h-full',
+        styles['base-table-wrapper'],
+        { [styles.empty]: dataSource.length === 0 },
+      ])}
       style={styleMerged}
     >
       <AntdTable
@@ -89,7 +102,7 @@ function InternalBaseTable<T extends IBaseObject = any>(
         rowKey={rowKey}
         dataSource={dataSource}
         pagination={pagination}
-        // scroll={tableScroll}
+        scroll={tableScroll}
         bordered={bordered}
         rowSelection={internalRowSelection}
         loading={internalLoading}

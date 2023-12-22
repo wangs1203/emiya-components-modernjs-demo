@@ -1,17 +1,41 @@
 .base-table-wrapper {
-  :global(.ant-table-wrapper) :global(.ant-table-thead) > tr > th,
-  :global(.ant-table-wrapper) :global(.ant-table-thead) > tr > td {
-    @apply tw-text-white;
-    background-color: var(--primary-color);
+  :global {
+    .ant-table-wrapper .ant-table-thead {
+      & > tr > th,
+      & > tr > td {
+        @apply tw-text-white;
+        background-color: var(--primary-color);
+      }
+    }
+    .ant-table-wrapper .ant-table-tbody {
+      & > tr.ant-table-row:hover > td,
+      & > tr td.ant-table-cell-row-hover {
+        background-color: var(--disable-bg-color);
+      }
+    }
   }
-  :global(.ant-table-wrapper)
-    :global(.ant-table-tbody)
-    > :global(tr.ant-table-row:hover)
-    > td,
-  :global(.ant-table-wrapper)
-    :global(.ant-table-tbody)
-    > tr
-    > :global(td.ant-table-cell-row-hover) {
-    background-color: var(--disable-bg-color);
+  // empty table
+  &.empty {
+    :global {
+      .ant-table-wrapper .ant-table-container .ant-table-body {
+        height: var(--scroll-height);
+        & > table {
+          height: 100%;
+        }
+      }
+    }
+  }
+  // Overrides the small table style
+  :global {
+    .ant-table-wrapper .ant-table.ant-table-small .ant-table-title,
+    .ant-table-wrapper .ant-table.ant-table-small .ant-table-footer,
+    .ant-table-wrapper .ant-table.ant-table-small .ant-table-cell,
+    .ant-table-wrapper .ant-table.ant-table-small .ant-table-thead > tr > th,
+    .ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody > tr > th,
+    .ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody > tr > td,
+    .ant-table-wrapper .ant-table.ant-table-small tfoot > tr > th,
+    .ant-table-wrapper .ant-table.ant-table-small tfoot > tr > td {
+      padding: 10px;
+    }
   }
 }

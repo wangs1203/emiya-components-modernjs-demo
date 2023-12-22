@@ -27,7 +27,7 @@ for (let i = 1; i <= 20; i++) {
 }
 
 const storyMeta: Meta<typeof BaseTable> = {
-  title: 'Emiya Components/BaseTable',
+  title: 'antd/BaseTable',
   component: BaseTable,
   argTypes: {
     data: { control: 'object' },
