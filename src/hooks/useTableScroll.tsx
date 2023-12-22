@@ -48,10 +48,9 @@ const getEleSize = (ele: HTMLElement, outer: boolean) => {
       parseFloat(marginLeft || '0') + parseFloat(marginRight || '0');
     const marginY =
       parseFloat(marginTop || '0') + parseFloat(marginBottom || '0');
-
     return {
-      width: Math.ceil(ele.offsetWidth + marginX),
-      height: Math.ceil(ele.offsetHeight + marginY),
+      width: ele.offsetWidth + marginX,
+      height: ele.offsetHeight + marginY,
     };
   }
   return { width: ele.offsetWidth, height: ele.offsetHeight };
