@@ -13,3 +13,8 @@ export * from './time-axis';
 export { default as TimeAxis } from './time-axis';
 
 export { default as BaseLoader } from './base-loader';
+
+export * from './global-loader';
+export { default as GlobalLoader } from './global-loader';
+
+export * from './table';
