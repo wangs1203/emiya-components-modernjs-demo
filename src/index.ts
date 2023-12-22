@@ -18,3 +18,6 @@ export * from './global-loader';
 export { default as GlobalLoader } from './global-loader';
 
 export * from './table';
+
+export * from './input-number';
+export { default as InputNumber } from './input-number';
