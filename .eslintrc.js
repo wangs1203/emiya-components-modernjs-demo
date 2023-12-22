@@ -8,6 +8,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   rules: {
     curly: OFF,
+    'react/prop-types': OFF,
     'react/react-in-jsx-scope': OFF,
     'react/display-name': OFF,
     'react-hooks/rules-of-hooks': ERROR,
