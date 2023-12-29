@@ -41,5 +41,14 @@ module.exports = {
         format: ['UPPER_CASE'],
       },
     ],
+    '@typescript-eslint/no-unused-vars': [
+      WARNING,
+      {
+        argsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
   },
 };
