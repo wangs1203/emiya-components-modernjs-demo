@@ -21,3 +21,6 @@ export * from './table';
 
 export * from './input-number';
 export { default as InputNumber } from './input-number';
+
+export * from './date-picker';
+export { default as DatePicker } from './date-picker';

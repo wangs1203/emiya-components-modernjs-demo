@@ -7,6 +7,11 @@ import zh_TW from 'antd/locale/zh_TW';
 import ja_JP from 'antd/locale/ja_JP';
 import ko_KR from 'antd/locale/ko_KR';
 import en_US from 'antd/locale/en_US';
+import 'dayjs/locale/zh-cn';
+import 'dayjs/locale/zh-tw';
+import 'dayjs/locale/ja';
+import 'dayjs/locale/ko'
+
 import '../src/index.css';
 import './index.css';
 
