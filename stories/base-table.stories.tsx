@@ -30,14 +30,25 @@ const storyMeta: Meta<typeof BaseTable> = {
   title: 'antd/BaseTable',
   component: BaseTable,
   argTypes: {
+    loading: { control: 'boolean' },
+    rowKey: { control: 'string' },
     data: { control: 'object' },
     columns: { control: 'object' },
-    rowKey: { control: 'string' },
   },
   args: {
     rowKey: 'id',
     columns,
     data: dataSource,
+    loading: false,
+    pagination: {
+      current: 1,
+      total: 20,
+      defaultPageSize: 20,
+      showQuickJumper: true,
+      showSizeChanger: true,
+      pageSizeOptions: [10, 20, 30, 50, 100],
+      showTotal: (total: number) => `共 ${total} 条`,
+    },
   },
 };
 

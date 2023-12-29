@@ -1,9 +1,10 @@
 import type { HTMLAttributes, Ref } from 'react';
-import type { TableProps as AntdTableProps } from 'antd';
+import type { TableProps as AntdTableProps, PaginationProps } from 'antd';
 import { forwardRef, memo, useMemo } from 'react';
-import { Table as AntdTable, theme } from 'antd';
+import { Table as AntdTable, theme, Pagination } from 'antd';
 import { merge } from 'lodash';
 import clsx from 'clsx';
+import BaseLoader from '../base-loader';
 import styles from './base-table.module.less';
 import { useTableWrapperRef } from '@/hooks';
 
@@ -21,9 +22,11 @@ export const DEFAULT_PAGINATION: AntdTableProps<any[]>['pagination'] = {
   showTotal: (total: number) => `共 ${total} 条`,
 };
 
-export interface ITableProps<T> extends Omit<AntdTableProps<T>, 'dataSource'> {
+export interface ITableProps<T>
+  extends Omit<AntdTableProps<T>, 'dataSource' | 'loading'> {
   wrapProps?: HTMLAttributes<HTMLDivElement>;
   data: T[] | undefined;
+  loading?: boolean;
 }
 
 function InternalBaseTable<T extends IBaseObject = any>(
@@ -73,41 +76,55 @@ function InternalBaseTable<T extends IBaseObject = any>(
     [rowSelection],
   );
 
-  const internalLoading = useMemo(
+  const paginationSize = useMemo(
     () =>
-      loading === true
-        ? {
-            tip: '加载中...',
-          }
-        : loading,
-    [loading],
+      (['large', 'middle'].includes(size)
+        ? 'default'
+        : size) as PaginationProps['size'],
+    [size],
   );
 
   const dataSource = data ?? [];
 
   return (
-    <div
-      {...wrapProps}
-      ref={wrapperRef}
-      className={clsx([
-        'tw-min-h-0 tw-h-full',
-        styles['base-table-wrapper'],
-        { [styles.empty]: dataSource.length === 0 },
-      ])}
-      style={styleMerged}
-    >
-      <AntdTable
-        ref={ref}
-        size={size}
-        rowKey={rowKey}
-        dataSource={dataSource}
-        pagination={pagination}
-        scroll={tableScroll}
-        bordered={bordered}
-        rowSelection={internalRowSelection}
-        loading={internalLoading}
-        {...props}
-      />
+    <div className="tw-flex tw-flex-col tw-flex-1 tw-min-h-0 tw-h-full tw-relative">
+      <BaseLoader spinning={loading} center />
+      <div
+        {...wrapProps}
+        ref={wrapperRef}
+        className={clsx([
+          'tw-min-h-0',
+          styles['base-table-wrapper'],
+          { [styles.empty]: dataSource.length === 0 },
+        ])}
+        style={styleMerged}
+      >
+        <AntdTable
+          ref={ref}
+          size={size}
+          rowKey={rowKey}
+          dataSource={dataSource}
+          scroll={tableScroll}
+          bordered={bordered}
+          rowSelection={internalRowSelection}
+          pagination={false}
+          // pagination={pagination}
+          // loading={internalLoading}
+          {...props}
+        />
+      </div>
+      {(pagination as any)?.current && (
+        <Pagination
+          className={clsx(
+            'tw-flex tw-justify-end tw-flex-wrap tw-gap-y-2',
+            paginationSize === 'small' ? '!tw-my-2' : '!tw-my-4',
+          )}
+          size={paginationSize}
+          showSizeChanger
+          showQuickJumper
+          {...pagination}
+        />
+      )}
     </div>
   );
 }

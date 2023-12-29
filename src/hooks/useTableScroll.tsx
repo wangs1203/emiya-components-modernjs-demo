@@ -73,21 +73,20 @@ const getScroll = (
   const scrollX = tableWidth;
   let scrollY = tableHeight;
   const antdThead = ele.querySelector('.ant-table-header') as HTMLElement;
-  const antdPagination = ele.querySelector('.ant-pagination') as HTMLElement;
   if (antdThead) {
     const { height } = getEleSize(antdThead, true);
     scrollY -= height;
   } else {
     __DEBUG__ && console.warn('cannot fund antdThead');
   }
-
-  if (antdPagination) {
-    const { height } = getEleSize(antdPagination, true);
-    // 分页组件上下边距过高，只减去一个边距的值
-    scrollY = scrollY - height + 16;
-  } else {
-    __DEBUG__ && withPagination && console.warn('cannot find antdPagination');
-  }
+  // const antdPagination = ele.querySelector('.ant-pagination') as HTMLElement;
+  // if (antdPagination) {
+  //   const { height } = getEleSize(antdPagination, true);
+  //   // 分页组件上下边距过高，只减去一个边距的值
+  //   scrollY = scrollY - height + 16;
+  // } else {
+  //   __DEBUG__ && withPagination && console.warn('cannot find antdPagination');
+  // }
   // 比计算值缩小2，避免溢出
   return { x: scrollX - 2, y: withPagination ? scrollY - 2 : scrollY };
 };
