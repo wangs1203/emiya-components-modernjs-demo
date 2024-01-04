@@ -17,7 +17,6 @@ import type {
   RangePickerRef as AntdRangePickerRef,
 } from 'antd/es/date-picker/generatePicker/interface';
 import clsx from 'clsx';
-import _ from 'lodash';
 
 export enum TIME_VALUE {
   TODAY = 'TODAY',

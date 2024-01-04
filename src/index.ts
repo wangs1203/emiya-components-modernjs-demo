@@ -24,3 +24,6 @@ export { default as InputNumber } from './input-number';
 
 export * from './date-picker';
 export { default as DatePicker } from './date-picker';
+
+export * from './toolbar';
+export { default as Toolbar } from './toolbar';
