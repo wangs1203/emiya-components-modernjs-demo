@@ -96,7 +96,7 @@ function Toolbar({
   );
 
   const handleSearch = useEvent(() => {
-    onSearch?.(values);
+    onSearch?.(internalValues);
   });
 
   const handleOpenMore = useCallback(() => {
@@ -124,6 +124,7 @@ function Toolbar({
   });
 
   useUpdateEffect(() => {
+    console.log('UpdateEffect');
     setInternalValues(values);
   }, [values]);
 
