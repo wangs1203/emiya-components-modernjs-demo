@@ -22,7 +22,7 @@ export const DEFAULT_PAGINATION: AntdTableProps<any[]>['pagination'] = {
   showTotal: (total: number) => `共 ${total} 条`,
 };
 
-export interface ITableProps<T>
+export interface IBaseTableProps<T>
   extends Omit<AntdTableProps<T>, 'dataSource' | 'loading'> {
   wrapProps?: HTMLAttributes<HTMLDivElement>;
   data: T[] | undefined;
@@ -41,7 +41,7 @@ function InternalBaseTable<T extends IBaseObject = any>(
     rowSelection,
     loading,
     ...props
-  }: ITableProps<T>,
+  }: IBaseTableProps<T>,
   ref: Ref<HTMLDivElement>,
 ) {
   const [wrapperRef, wrapperSize] = useTableWrapperRef<HTMLDivElement>(
@@ -132,7 +132,7 @@ function InternalBaseTable<T extends IBaseObject = any>(
 const Table = memo(forwardRef(InternalBaseTable)) as unknown as (<
   RecordType extends object = any,
 >(
-  props: React.PropsWithChildren<ITableProps<RecordType>> & {
+  props: React.PropsWithChildren<IBaseTableProps<RecordType>> & {
     ref?: React.Ref<HTMLDivElement>;
   },
 ) => React.ReactElement) & {
