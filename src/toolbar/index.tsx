@@ -11,6 +11,7 @@ import {
 import clsx from 'clsx';
 import styles from './toolbar.modules.less';
 import FieldControl from './field-control';
+import ActionBar, { IActionBarProps } from './action-bar';
 import { useEvent } from '@/hooks';
 
 const MORE_FILTERS_LIMIT = 8;
@@ -21,17 +22,11 @@ interface IFilters {
     component: ReactElement;
   };
 }
-interface IActions {
-  search?: React.ReactElement;
-  statistic?: React.ReactElement | null;
-  reset?: React.ReactElement | null;
-  [key: string]: ((...params: any[]) => void) | React.ReactNode;
-}
 
 export interface IToolbarProps {
   columns?: 3 | 4;
   filters: IFilters;
-  actions?: IActions;
+  actions?: IActionBarProps['actions'];
   values?: IBaseObject;
   onSearch?: (values?: IBaseObject) => void;
   onChange?: (values: IBaseObject | undefined, key: keyof IFilters) => void;
@@ -193,8 +188,10 @@ function Toolbar({
           </div>
         </div>
       </div>
+      <ActionBar actions={actions} />
     </div>
   );
 }
+Toolbar.ActionBar = ActionBar;
 
 export default memo(Toolbar);

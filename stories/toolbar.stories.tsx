@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input } from 'antd';
+import { Input, Button } from 'antd';
 import { Toolbar } from 'emiya-components';
 
 const storyMeta: Meta<typeof Toolbar> = {
@@ -28,10 +28,6 @@ const storyMeta: Meta<typeof Toolbar> = {
         label: '编号',
         component: <Input />,
       },
-      description: {
-        label: '描述',
-        component: <Input />,
-      },
       attrbuite1: {
         label: '属性1',
         component: <Input />,
@@ -51,6 +47,29 @@ const storyMeta: Meta<typeof Toolbar> = {
       attrbuite5: {
         label: '属性5',
         component: <Input />,
+      },
+      attrbuite6: {
+        label: '属性6',
+        component: <Input />,
+      },
+    },
+    actions: {
+      insert: () => {
+        console.log('insert action');
+      },
+      export: (
+        <Button
+          title="导出"
+          type="primary"
+          onClick={() => {
+            console.log('export action');
+          }}
+        >
+          导出
+        </Button>
+      ),
+      delete: () => {
+        console.log('delete action');
       },
     },
   },
