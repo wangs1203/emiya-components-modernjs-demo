@@ -22,12 +22,15 @@ export const DEFAULT_PAGINATION: AntdTableProps<any[]>['pagination'] = {
   showTotal: (total: number) => `共 ${total} 条`,
 };
 
-export interface IBaseTableProps<T>
+interface IBaseTableProps<T>
   extends Omit<AntdTableProps<T>, 'dataSource' | 'loading'> {
   wrapProps?: HTMLAttributes<HTMLDivElement>;
   data: T[] | undefined;
   loading?: boolean;
 }
+
+export type BaseTableProps<RecordType extends object = any> =
+  IBaseTableProps<RecordType>;
 
 function InternalBaseTable<T extends IBaseObject = any>(
   {
