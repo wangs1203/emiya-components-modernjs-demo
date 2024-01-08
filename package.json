@@ -1,6 +1,6 @@
 {
   "name": "emiya-components-modernjs-demo",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "An modernjs UI libray and React components implementation",
   "keywords": [
     "modernjs",
@@ -50,7 +50,10 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "~3.3.3"
+    "tailwindcss": "~3.3.3",
+    "antd": "^5.9.0",
+    "@ant-design/icons": "^5.2.6",
+    "@ant-design/cssinjs": "^1.18.1"
   },
   "devDependencies": {
     "@modern-js/builder-rspack-provider": "^2.42.1",

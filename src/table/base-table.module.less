@@ -1,41 +1,56 @@
 .base-table-wrapper {
   :global {
-    .ant-table-wrapper .ant-table-thead {
-      & > tr > th,
-      & > tr > td {
-        @apply tw-text-white;
-        background-color: var(--primary-color);
+    .ant-table-wrapper {
+      .ant-table-thead > tr {
+        & > th,
+        & > td {
+          @apply tw-text-white;
+          background-color: var(--primary-color);
+        }
       }
-    }
-    .ant-table-wrapper .ant-table-tbody {
-      & > tr.ant-table-row:hover > td,
-      & > tr td.ant-table-cell-row-hover {
-        background-color: var(--disable-bg-color);
+      .ant-table {
+        .ant-table-tbody {
+          & > tr {
+            &.ant-table-row:hover > td,
+            & > td.ant-table-cell-row-hover {
+              background-color: var(--disable-bg-color);
+            }
+          }
+          & > .ant-table-placeholder > .ant-table-cell {
+            @apply tw-p-0;
+            & > .ant-table-expanded-row-fixed {
+              @apply tw-h-full tw-flex tw-items-center tw-justify-center;
+            }
+          }
+        }
+        // Overrides the small table style
+        &.ant-table-small {
+          .ant-table-title,
+          .ant-table-footer,
+          .ant-table-cell,
+          .ant-table-thead > tr > th,
+          .ant-table-tbody > tr > th,
+          .ant-table-tbody > tr > td,
+          tfoot > tr > th,
+          tfoot > tr > td {
+            padding: 10px;
+          }
+        }
+      }
+      & > .ant-spin-nested-loading > div > .ant-spin {
+        max-height: var(--scroll-height);
       }
     }
   }
   // empty table
   &.empty {
     :global {
-      .ant-table-wrapper .ant-table-container .ant-table-body {
+      .ant-table-wrapper .ant-table-container > .ant-table-body {
         height: var(--scroll-height);
         & > table {
           height: 100%;
         }
       }
-    }
-  }
-  // Overrides the small table style
-  :global {
-    .ant-table-wrapper .ant-table.ant-table-small .ant-table-title,
-    .ant-table-wrapper .ant-table.ant-table-small .ant-table-footer,
-    .ant-table-wrapper .ant-table.ant-table-small .ant-table-cell,
-    .ant-table-wrapper .ant-table.ant-table-small .ant-table-thead > tr > th,
-    .ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody > tr > th,
-    .ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody > tr > td,
-    .ant-table-wrapper .ant-table.ant-table-small tfoot > tr > th,
-    .ant-table-wrapper .ant-table.ant-table-small tfoot > tr > td {
-      padding: 10px;
     }
   }
 }

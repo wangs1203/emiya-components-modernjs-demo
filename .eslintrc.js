@@ -8,6 +8,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   rules: {
     curly: OFF,
+    'react/prop-types': OFF,
     'react/react-in-jsx-scope': OFF,
     'react/display-name': OFF,
     'react-hooks/rules-of-hooks': ERROR,
@@ -38,6 +39,15 @@ module.exports = {
       {
         selector: 'enum',
         format: ['UPPER_CASE'],
+      },
+    ],
+    '@typescript-eslint/no-unused-vars': [
+      WARNING,
+      {
+        argsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
       },
     ],
   },
