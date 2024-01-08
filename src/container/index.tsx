@@ -13,7 +13,7 @@ export default function Container({
 }: IContainerProps) {
   return (
     <div
-      className={`tw-overflow-hidden tw-flex-auto tw-min-h-0${
+      className={`tw-overflow-hidden tw-flex-auto tw-h-full tw-min-h-0${
         !full ? ' tw-p-5 tw-pb-1' : ''
       }`}
     >
