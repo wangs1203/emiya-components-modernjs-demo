@@ -59,7 +59,7 @@ function InternalBaseTable<T extends IBaseObject = any>(
 
   const styleMerged = useMemo(() => {
     const internalStyle = {
-      flex: '1 1 auto',
+      flex: 1,
       '--primary-color': token.colorPrimary,
       '--disable-bg-color': token.colorBgContainerDisabled,
       '--scroll-height': `${tableScroll.y}px`,
@@ -90,7 +90,7 @@ function InternalBaseTable<T extends IBaseObject = any>(
   const dataSource = data ?? [];
 
   return (
-    <div className="tw-flex tw-flex-col tw-flex-auto tw-min-h-0 tw-h-full tw-relative">
+    <div className="tw-flex tw-flex-col tw-flex-1 tw-min-h-0 tw-h-full tw-relative">
       <BaseLoader spinning={loading} center />
       <div
         {...wrapProps}
