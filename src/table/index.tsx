@@ -1,35 +1,81 @@
-import { isValidElement, memo, useCallback } from 'react';
+import React, {
+  type PropsWithChildren,
+  isValidElement,
+  forwardRef,
+  memo,
+} from 'react';
+import { Table as AntdTable } from 'antd';
+import Toolbar, { IToolbarProps } from '../toolbar';
 import BaseTable, { BaseTableProps } from './base-table';
-import Toolbar from '@/toolbar';
+
+export type {
+  ColumnProps,
+  ColumnGroupType,
+  ColumnType,
+  ColumnsType,
+  TablePaginationConfig,
+} from 'antd/es/table';
 
 export * from './base-table';
 export { BaseTable };
 
 interface ITableProps<RecordType extends object = any>
   extends BaseTableProps<RecordType> {
-  toolbar?: any;
-}
-
-function Table<RecordType extends object = any>({
-  toolbar,
-  ...props
-}: ITableProps<RecordType>) {
-  const showRenderToolbar = () => Boolean(toolbar);
-
-  const renderToolbar = useCallback(() => {
-    if (isValidElement(toolbar)) return toolbar;
-    return <Toolbar {...toolbar} />;
-  }, [toolbar]);
-
-  return (
-    <>
-      {showRenderToolbar() && renderToolbar()}
-      <BaseTable {...props} />
-    </>
-  );
+  toolbar?: IToolbarProps;
 }
 
 export type TableProps<RecordType extends object = any> =
   ITableProps<RecordType>;
 
-export default memo(Table);
+function InternalTable<RecordType extends object = any>(
+  { toolbar, ...props }: ITableProps<RecordType>,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  const showRenderToolbar = () => Boolean(toolbar);
+
+  const renderToolbar = React.useCallback(() => {
+    if (isValidElement(toolbar)) return toolbar;
+    return <Toolbar {...(toolbar as IToolbarProps)} />;
+  }, [toolbar]);
+  // const renderToolbar = () => {
+  //   if (isValidElement(toolbar)) return toolbar;
+  //   return <Toolbar {...(toolbar as IToolbarProps)} />;
+  // };
+
+  return (
+    <>
+      {showRenderToolbar() && renderToolbar()}
+      <BaseTable {...props} ref={ref} />
+    </>
+  );
+}
+
+const Table = memo(forwardRef(InternalTable)) as unknown as (<
+  RecordType extends object = any,
+>(
+  props: PropsWithChildren<
+    ITableProps<RecordType> & {
+      ref?: React.Ref<HTMLDivElement>;
+    }
+  >,
+) => React.ReactElement) & {
+  SELECTION_COLUMN: typeof AntdTable.SELECTION_COLUMN;
+  EXPAND_COLUMN: typeof AntdTable.EXPAND_COLUMN;
+  SELECTION_ALL: typeof AntdTable.SELECTION_ALL;
+  SELECTION_INVERT: typeof AntdTable.SELECTION_INVERT;
+  SELECTION_NONE: typeof AntdTable.SELECTION_NONE;
+  Column: typeof AntdTable.Column;
+  ColumnGroup: typeof AntdTable.ColumnGroup;
+  Summary: typeof AntdTable.Summary;
+};
+
+Table.SELECTION_COLUMN = AntdTable.SELECTION_COLUMN;
+Table.EXPAND_COLUMN = AntdTable.EXPAND_COLUMN;
+Table.SELECTION_ALL = AntdTable.SELECTION_ALL;
+Table.SELECTION_INVERT = AntdTable.SELECTION_INVERT;
+Table.SELECTION_NONE = AntdTable.SELECTION_NONE;
+Table.Column = AntdTable.Column;
+Table.ColumnGroup = AntdTable.ColumnGroup;
+Table.Summary = AntdTable.Summary;
+
+export default Table;

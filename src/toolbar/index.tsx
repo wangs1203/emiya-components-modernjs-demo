@@ -9,7 +9,7 @@ import {
   UpOutlined,
 } from '@ant-design/icons';
 import clsx from 'clsx';
-import styles from './toolbar.modules.less';
+import styles from './toolbar.module.less';
 import FieldControl from './field-control';
 import ActionBar, { IActionBarProps } from './action-bar';
 import { useEvent } from '@/hooks';

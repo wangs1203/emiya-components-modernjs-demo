@@ -1,7 +1,7 @@
 import { memo, type ReactNode } from 'react';
 import { isFunction } from 'lodash';
 import { Button } from 'antd';
-import styles from './toolbar.modules.less';
+import styles from './toolbar.module.less';
 
 const ACTIONS_LABEL_MAP: IBaseObject<string> = {
   insert: '新增',

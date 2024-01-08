@@ -10,13 +10,7 @@ export default defineConfig({
   // },
 
   buildConfig: {
-    // transformImport: [
-    //   // babel-plugin-import 的 options 配置
-    //   {
-    //     libraryName: 'antd',
-    //     style: true,
-    //   },
-    // ],
+    externals: ['react', 'react-dom'],
     transformLodash: true,
   },
 });
