@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button, Input } from 'antd';
 import { Table, Container } from 'emiya-components';
-import './table.stories.css';
 
 const columns = [
   {
