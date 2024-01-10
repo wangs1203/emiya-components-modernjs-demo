@@ -28,3 +28,5 @@ export { default as DatePicker } from './date-picker';
 
 export * from './toolbar';
 export { default as Toolbar } from './toolbar';
+
+export { ConfigProvider, theme } from 'antd';

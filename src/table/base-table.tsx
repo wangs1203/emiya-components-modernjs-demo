@@ -1,5 +1,6 @@
-import type { HTMLAttributes, Ref } from 'react';
+import type { HTMLAttributes } from 'react';
 import type { TableProps as AntdTableProps, PaginationProps } from 'antd';
+import type { RefTable } from 'antd/es/table/interface';
 import { forwardRef, memo, useMemo } from 'react';
 import { Table as AntdTable, theme, Pagination } from 'antd';
 import { merge } from 'lodash';
@@ -13,6 +14,8 @@ const { useToken } = theme;
 export const DEFAULT_PAGE_SIZE = 20;
 export const DEFAULT_PAGE_KEY = 'page';
 export const DEFAULT_PAGE_SIZE_KEY = 'size';
+
+export type AntdTableRef = Required<Parameters<RefTable>[0]>['ref'];
 
 export const DEFAULT_PAGINATION: AntdTableProps<any[]>['pagination'] = {
   defaultPageSize: DEFAULT_PAGE_SIZE,
@@ -45,7 +48,7 @@ function InternalBaseTable<T extends IBaseObject = any>(
     loading,
     ...props
   }: IBaseTableProps<T>,
-  ref: Ref<HTMLDivElement>,
+  ref: AntdTableRef,
 ) {
   const [wrapperRef, wrapperSize] = useTableWrapperRef<HTMLDivElement>(
     Boolean(pagination),
@@ -136,7 +139,7 @@ const Table = memo(forwardRef(InternalBaseTable)) as unknown as (<
   RecordType extends object = any,
 >(
   props: React.PropsWithChildren<IBaseTableProps<RecordType>> & {
-    ref?: React.Ref<HTMLDivElement>;
+    ref?: AntdTableRef;
   },
 ) => React.ReactElement) & {
   SELECTION_COLUMN: typeof AntdTable.SELECTION_COLUMN;

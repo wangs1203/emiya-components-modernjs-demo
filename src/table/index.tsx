@@ -5,8 +5,11 @@ import React, {
   memo,
 } from 'react';
 import { Table as AntdTable } from 'antd';
-import Toolbar, { IToolbarProps } from '../toolbar';
-import BaseTable, { BaseTableProps } from './base-table';
+import Toolbar, { type IToolbarProps } from '../toolbar';
+import BaseTable, {
+  type BaseTableProps,
+  type AntdTableRef,
+} from './base-table';
 
 export type {
   ColumnProps,
@@ -29,7 +32,7 @@ export type TableProps<RecordType extends object = any> =
 
 function InternalTable<RecordType extends object = any>(
   { toolbar, ...props }: ITableProps<RecordType>,
-  ref: React.Ref<HTMLDivElement>,
+  ref: AntdTableRef,
 ) {
   const showRenderToolbar = () => Boolean(toolbar);
 
@@ -37,10 +40,6 @@ function InternalTable<RecordType extends object = any>(
     if (isValidElement(toolbar)) return toolbar;
     return <Toolbar {...(toolbar as IToolbarProps)} />;
   }, [toolbar]);
-  // const renderToolbar = () => {
-  //   if (isValidElement(toolbar)) return toolbar;
-  //   return <Toolbar {...(toolbar as IToolbarProps)} />;
-  // };
 
   return (
     <>
@@ -55,7 +54,7 @@ const Table = memo(forwardRef(InternalTable)) as unknown as (<
 >(
   props: PropsWithChildren<
     ITableProps<RecordType> & {
-      ref?: React.Ref<HTMLDivElement>;
+      ref?: AntdTableRef;
     }
   >,
 ) => React.ReactElement) & {
