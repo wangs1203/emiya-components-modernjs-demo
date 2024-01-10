@@ -116,11 +116,12 @@ export const WithToolbar: Story = {
           console.log('delete action');
         },
       },
-      onSearch: (values: any) => {
+      onSearch: values => {
         console.log('search', values);
       },
-      onReset: () => {
+      onReset: emptyValues => {
         console.log('reset');
+        console.log(emptyValues);
       },
     },
   },

@@ -30,7 +30,7 @@ export interface IToolbarProps {
   values?: IBaseObject;
   onSearch?: (values?: IBaseObject) => void;
   onChange?: (values: IBaseObject | undefined, key: keyof IFilters) => void;
-  onReset?: () => void;
+  onReset?: (emptyValues: IBaseObject) => void;
   divider?: boolean;
   className?: string;
   showOpenMore?: boolean;
@@ -119,7 +119,9 @@ function Toolbar({
   );
 
   const handleReset = useEvent(() => {
-    onReset?.();
+    onReset?.(
+      filterKeys.reduce((acc, key) => ({ ...acc, [key]: undefined }), {}),
+    );
     setInternalValues(undefined);
   });
 
