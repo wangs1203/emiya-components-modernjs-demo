@@ -10,7 +10,7 @@ import en_US from 'antd/locale/en_US';
 import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/zh-tw';
 import 'dayjs/locale/ja';
-import 'dayjs/locale/ko'
+import 'dayjs/locale/ko';
 
 import '../src/index.css';
 import './index.css';

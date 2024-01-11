@@ -42,14 +42,10 @@ const storyMeta: Meta<typeof Table> = {
     columns,
     data: dataSource,
     loading: false,
-    pagination: {
-      current: 1,
+    pagingParams: {
+      page: 1,
+      size: 20,
       total: 20,
-      defaultPageSize: 20,
-      showQuickJumper: true,
-      showSizeChanger: true,
-      pageSizeOptions: [10, 20, 30, 50, 100],
-      showTotal: (total: number) => `共 ${total} 条`,
     },
   },
 };
@@ -64,14 +60,6 @@ export const WithToolbar: Story = {
       columns: 4,
       divider: true,
       filters: {
-        name: {
-          label: '名称',
-          component: <Input />,
-        },
-        code: {
-          label: '编号',
-          component: <Input />,
-        },
         attrbuite1: {
           label: '属性1',
           component: <Input />,
@@ -94,6 +82,18 @@ export const WithToolbar: Story = {
         },
         attrbuite6: {
           label: '属性6',
+          component: <Input />,
+        },
+        attrbuite7: {
+          label: '属性7',
+          component: <Input />,
+        },
+        attrbuite8: {
+          label: '属性8',
+          component: <Input />,
+        },
+        attrbuite9: {
+          label: '属性9',
           component: <Input />,
         },
       },

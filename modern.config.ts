@@ -10,7 +10,7 @@ export default defineConfig({
   // },
 
   buildConfig: {
-    externals: ['react', 'react-dom'],
+    // externals: ['react', 'react-dom'],
     transformLodash: true,
   },
 });

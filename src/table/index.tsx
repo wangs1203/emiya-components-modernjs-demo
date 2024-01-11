@@ -1,8 +1,10 @@
 import React, {
   type PropsWithChildren,
+  useCallback,
   isValidElement,
   forwardRef,
   memo,
+  useMemo,
 } from 'react';
 import { Table as AntdTable } from 'antd';
 import Toolbar, { type IToolbarProps } from '../toolbar';
@@ -22,21 +24,62 @@ export type {
 export * from './base-table';
 export { BaseTable };
 
+const DEFAULT_PAGE_SIZE = 20;
+
+const DEFAULT_PAGINATION: BaseTableProps<any[]>['pagination'] = {
+  defaultPageSize: DEFAULT_PAGE_SIZE,
+  showQuickJumper: true,
+  showSizeChanger: true,
+  pageSizeOptions: [10, 20, 30, 50, 100],
+  showTotal: (total: number) => `共 ${total} 条`,
+};
+
 interface ITableProps<RecordType extends object = any>
-  extends BaseTableProps<RecordType> {
+  extends Omit<BaseTableProps<RecordType>, 'pagination'> {
   toolbar?: IToolbarProps;
+  pagingParams?: {
+    page?: number;
+    size?: number;
+    total?: number;
+  };
+  onPaginationChange?: (
+    params: Pick<
+      Required<Required<ITableProps>['pagingParams']>,
+      'page' | 'size'
+    >,
+  ) => void;
 }
 
 export type TableProps<RecordType extends object = any> =
   ITableProps<RecordType>;
 
 function InternalTable<RecordType extends object = any>(
-  { toolbar, ...props }: ITableProps<RecordType>,
+  {
+    toolbar,
+    pagingParams,
+    onPaginationChange,
+    ...props
+  }: ITableProps<RecordType>,
   ref: AntdTableRef,
 ) {
-  const showRenderToolbar = () => Boolean(toolbar);
+  const showRenderToolbar = useCallback(() => Boolean(toolbar), [toolbar]);
 
-  const renderToolbar = React.useCallback(() => {
+  const pagination = useMemo(() => {
+    const { total, page: current, size: pageSize } = pagingParams ?? {};
+
+    const onChange = (page: number, pageSize: number) =>
+      onPaginationChange?.({ page, size: pageSize });
+
+    return {
+      ...DEFAULT_PAGINATION,
+      total,
+      current,
+      pageSize,
+      onChange,
+    };
+  }, [pagingParams, onPaginationChange]);
+
+  const renderToolbar = useCallback(() => {
     if (isValidElement(toolbar)) return toolbar;
     return <Toolbar {...(toolbar as IToolbarProps)} />;
   }, [toolbar]);
@@ -44,7 +87,7 @@ function InternalTable<RecordType extends object = any>(
   return (
     <>
       {showRenderToolbar() && renderToolbar()}
-      <BaseTable {...props} ref={ref} />
+      <BaseTable {...props} ref={ref} pagination={pagination} />
     </>
   );
 }
