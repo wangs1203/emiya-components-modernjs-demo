@@ -36,13 +36,15 @@
     "upgrade": "modern upgrade"
   },
   "dependencies": {
-    "@ant-design/cssinjs": "^1.18.1",
+    "@ant-design/cssinjs": "^1.18.2",
     "@ant-design/icons": "^5.2.6",
     "ahooks": "^3.7.8",
     "antd": "5.12.5",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
     "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6"
   },
   "peerDependencies": {
@@ -79,8 +81,6 @@
     "lint-staged": "~13.1.0",
     "postcss-loader": "^7.3.3",
     "prettier": "~2.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rimraf": "~3.0.2",
     "storybook-dark-mode": "^3.0.3",
     "style-loader": "^3.3.3",
