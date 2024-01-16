@@ -1,21 +1,12 @@
 import { useState, type ReactElement, useMemo, memo, useCallback } from 'react';
-import { useUpdateEffect } from 'ahooks';
 import { Button, Row } from 'antd';
-import {
-  DownOutlined,
-  LineChartOutlined,
-  ReloadOutlined,
-  SearchOutlined,
-  UpOutlined,
-} from '@ant-design/icons';
+import { DownOutlined, ReloadOutlined, UpOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
+import TableControl from './table-control';
 import styles from './toolbar.module.less';
-import FieldControl from './field-control';
 import ActionBar, { IActionBarProps } from './action-bar';
-import { useEvent } from '@/hooks';
 
-export { default as TableToolbar } from './table-toolbar';
-export * from './table-toolbar';
+export * from './table-control';
 
 const MORE_FILTERS_LIMIT = 8;
 
@@ -26,39 +17,29 @@ interface IFilters {
   };
 }
 
-export interface IToolbarProps {
+export interface ITableToolbarProps {
   columns?: 3 | 4;
   filters: IFilters;
   actions?: IActionBarProps['actions'];
   values?: IBaseObject;
-  onSearch?: (values?: IBaseObject) => void;
-  onChange?: (values: IBaseObject | undefined, key: keyof IFilters) => void;
-  onReset?: (emptyValues: IBaseObject) => void;
+  onReset?: () => void;
   divider?: boolean;
   className?: string;
   showOpenMore?: boolean;
-  queryType?: 'search' | 'statists';
   initialValues?: IBaseObject;
 }
+export type TableToolbarProps = ITableToolbarProps;
 
-export type ToolbarProps = IToolbarProps;
-
-function Toolbar({
+function TableToolbar({
   columns = 4,
   filters,
   actions,
-  values,
-  onSearch,
-  onChange,
   onReset,
   divider,
   className,
   showOpenMore,
-  initialValues,
-  queryType = 'search',
-}: IToolbarProps) {
+}: TableToolbarProps) {
   const [openMore, setOpenMore] = useState(Boolean(showOpenMore));
-  const [internalValues, setInternalValues] = useState(initialValues);
 
   const filterKeys = useMemo(
     () => Object.getOwnPropertyNames(filters ?? {}),
@@ -88,53 +69,9 @@ function Toolbar({
     [columns],
   );
 
-  const searchBtnProps = useMemo(
-    () =>
-      queryType === 'statists'
-        ? {
-            icon: <LineChartOutlined />,
-            title: '统计',
-          }
-        : {
-            icon: <SearchOutlined />,
-            title: '查询',
-          },
-    [queryType],
-  );
-
-  const handleSearch = useEvent(() => {
-    onSearch?.(internalValues);
-  });
-
   const handleOpenMore = useCallback(() => {
     setOpenMore(openMore => !openMore);
   }, []);
-
-  const handleFieldsValueChange = useCallback(
-    (key: string) => {
-      return (param: any) => {
-        const value =
-          param?.target && param?.target instanceof HTMLElement
-            ? param?.target.value
-            : param;
-        onChange?.({ ...values, [key]: value }, key);
-        if (values !== undefined) return;
-        setInternalValues(prev => ({ ...prev, [key]: value }));
-      };
-    },
-    [onChange, values],
-  );
-
-  const handleReset = useEvent(() => {
-    onReset?.(
-      filterKeys.reduce((acc, key) => ({ ...acc, [key]: undefined }), {}),
-    );
-    setInternalValues(undefined);
-  });
-
-  useUpdateEffect(() => {
-    setInternalValues(values);
-  }, [values]);
 
   return (
     <div
@@ -153,36 +90,23 @@ function Toolbar({
         <Row className={styles['toolbar-search-bar-primary']} align="top">
           {Boolean(filters) &&
             showFilterKeys.map((key, index) => (
-              <FieldControl
+              <TableControl
                 key={`filter-${key}${index}`}
                 wrapperClassName={fieldControlWrapperClassName}
                 name={key}
                 label={filters[key].label}
-                value={internalValues?.[key]}
-                onChange={handleFieldsValueChange(key)}
               >
                 {filters[key].component}
-              </FieldControl>
+              </TableControl>
             ))}
         </Row>
 
         <div className={styles['toolbar-search-bar-minor']}>
           {/* eslint-disable-next-line no-nested-ternary */}
-          {actions?.search ? (
-            actions.search
-          ) : onSearch ? (
-            <Button type="primary" {...searchBtnProps} onClick={handleSearch} />
-          ) : null}
-
-          {/* eslint-disable-next-line no-nested-ternary */}
           {actions?.reset ? (
             actions.reset
           ) : onReset ? (
-            <Button
-              icon={<ReloadOutlined />}
-              title="重置"
-              onClick={handleReset}
-            />
+            <Button icon={<ReloadOutlined />} title="重置" onClick={onReset} />
           ) : null}
 
           <div
@@ -201,6 +125,8 @@ function Toolbar({
     </div>
   );
 }
-Toolbar.ActionBar = ActionBar;
 
-export default memo(Toolbar);
+TableToolbar.ActionsBar = ActionBar;
+TableToolbar.TableControl = TableControl;
+
+export default memo(TableToolbar);

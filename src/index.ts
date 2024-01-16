@@ -29,4 +29,7 @@ export { default as DatePicker } from './date-picker';
 export * from './toolbar';
 export { default as Toolbar } from './toolbar';
 
+export * from './table/url-params-table';
+export { default as URLParamsTable } from './table/url-params-table';
+
 export { ConfigProvider, theme } from 'antd';
