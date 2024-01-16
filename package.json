@@ -1,6 +1,6 @@
 {
   "name": "emiya-components-modernjs-demo",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An modernjs UI libray and React components implementation",
   "keywords": [
     "modernjs",
@@ -45,6 +45,7 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.0.0",
     "react-draggable": "^4.4.6"
   },
   "peerDependencies": {
@@ -53,6 +54,7 @@
     "antd": ">=5.12.5",
     "react": ">=18",
     "react-dom": ">=18",
+    "react-router-dom": ">=6.0.0",
     "tailwindcss": "~3.3.3"
   },
   "devDependencies": {

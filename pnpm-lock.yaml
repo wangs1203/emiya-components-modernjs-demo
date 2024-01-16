@@ -35,6 +35,9 @@ dependencies:
   react-draggable:
     specifier: ^4.4.6
     version: 4.4.6(react-dom@18.2.0)(react@18.2.0)
+  react-router-dom:
+    specifier: ^6.0.0
+    version: 6.17.0(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@modern-js/builder-rspack-provider':
@@ -4766,7 +4769,6 @@ packages:
   /@remix-run/router@1.10.0:
     resolution: {integrity: sha512-Lm+fYpMfZoEucJ7cMxgt4dYt8jLfbpwRCzAjm9UgSLOkmlqo9gupxt6YX3DY0Fk155NT9l17d/ydi+964uS9Lw==}
     engines: {node: '>=14.0.0'}
-    dev: true
 
   /@remix-run/router@1.7.2:
     resolution: {integrity: sha512-7Lcn7IqGMV+vizMPoEl5F0XDshcdDYtMI6uJLQdQz5CfZAwy3vvGKYSUk789qndt5dEC4HfSjviSYlSoHGL2+A==}
@@ -13247,7 +13249,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.17.0(react@18.2.0)
-    dev: true
 
   /react-router@6.17.0(react@18.2.0):
     resolution: {integrity: sha512-YJR3OTJzi3zhqeJYADHANCGPUu9J+6fT5GLv82UWRGSxu6oJYCKVmxUcaBQuGm9udpWmPsvpme/CdHumqgsoaA==}
@@ -13257,7 +13258,6 @@ packages:
     dependencies:
       '@remix-run/router': 1.10.0
       react: 18.2.0
-    dev: true
 
   /react-side-effect@2.1.2(react@18.2.0):
     resolution: {integrity: sha512-PVjOcvVOyIILrYoyGEpDN3vmYNLdy1CajSFNt4TDsVQC5KpTijDvWVoR+/7Rz2xT978D8/ZtFceXxzsPwZEDvw==}
