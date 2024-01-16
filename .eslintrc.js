@@ -50,5 +50,6 @@ module.exports = {
         varsIgnorePattern: '^_',
       },
     ],
+    'node/prefer-global/url-search-params': OFF,
   },
 };
