@@ -116,14 +116,6 @@ export default storyMeta;
 
 type Story = StoryObj<typeof URLParamsTable>;
 
-export const Default: Story = {};
-
-export const Empty: Story = {
-  args: {
-    data: [],
-  },
-};
-
 export const WithToolbar: Story = {
   args: {
     toolbar: {
