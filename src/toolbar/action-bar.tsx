@@ -1,4 +1,4 @@
-import { memo, type ReactNode } from 'react';
+import { type ReactNode, memo, Fragment } from 'react';
 import { isFunction } from 'lodash';
 import { Button } from 'antd';
 import styles from './toolbar.module.less';
@@ -33,7 +33,6 @@ function ActionBar({ actions }: IActionBarProps) {
         if (isFunction(actions[key])) {
           const element = (
             <Button
-              key={`action-${key}-${index}`}
               type={
                 ['delete', 'batchDelete'].includes(key) ? undefined : 'primary'
               }
@@ -43,9 +42,13 @@ function ActionBar({ actions }: IActionBarProps) {
               {ACTIONS_LABEL_MAP[key]}
             </Button>
           );
-          return element;
+          return <Fragment key={`action-${key}-${index}`}>{element}</Fragment>;
         }
-        return actions[key] as ReactNode;
+        return (
+          <Fragment key={`action-${key}-${index}`}>
+            {actions[key] as ReactNode}
+          </Fragment>
+        );
       })}
     </div>
   ) : null;
